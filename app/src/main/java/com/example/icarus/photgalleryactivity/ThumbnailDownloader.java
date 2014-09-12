@@ -36,6 +36,11 @@ public class ThumbnailDownloader<Token> extends HandlerThread {
         mListener = listener;
     }
 
+    public void clearQueue() {
+        mHandler.removeMessages(MESSAGE_DOWNLOAD);
+        requestMap.clear();
+    }
+
     public ThumbnailDownloader(Handler responseHandler){
         super(TAG);
         mResponseHandler = responseHandler;
