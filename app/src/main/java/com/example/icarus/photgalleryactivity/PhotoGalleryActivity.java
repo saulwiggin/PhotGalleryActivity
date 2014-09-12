@@ -11,6 +11,11 @@ import android.widget.GridView;
 
 import java.io.IOException;
 
+    private class FetchItemsTask extends AsyncTask<Void,Void,Void> {
+        new FlickrFetchr().fetchItems();
+        return null;
+    }
+
     private class FetchItemsTask extneds AsyncTask<Void,Void,Void> {
         @Override
             protected Void doInBackground(Void... params){
@@ -32,13 +37,7 @@ import java.io.IOException;
     private class FetchItemsTask extends AsyncTask<Void,Void,Void> {
         @Override
         protected Void doInBackground(Void... params) {
-        try {
-            String result = new FlickrFetchr().getUrl("http://www.google.com");
-            Log.i(TAG, "Fetched contents of URL: " + result);
-        } catch (IOException ioe) {
-            Log.e(TAG, "Failed to fetch URL: ", ioe);
-
-        }
+        new FlikrFetchr().fetchItems
             return null;
 
 

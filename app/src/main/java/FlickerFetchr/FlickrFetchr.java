@@ -18,7 +18,7 @@ public class FlickrFetchr {
     private static final String ENDPOINT = "http://api.flickr.com/services/rest/";
     private static final String API_KEY = "yourAPIkeyhere";
     private static final String METHOD_GET_RECENT = "flickr.photos.getRecent";
-    privtae static final String PARAM_EXTRAS = "extras";
+    private static final String PARAM_EXTRAS = "extras";
 
     private static final String EXTRA_SMALL_URL = "url_s";
 
