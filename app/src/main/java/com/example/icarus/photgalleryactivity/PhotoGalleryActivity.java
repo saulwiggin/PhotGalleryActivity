@@ -80,6 +80,11 @@ private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>>
         }
 
         @Override
+        public void onDestoryView() {
+            super.onDestroyView();
+            mThumbnailThread.clearQueue();
+        }
+        @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.fragment_photo_gallery, container, false);
