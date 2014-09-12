@@ -11,25 +11,15 @@ import android.widget.GridView;
 
 import java.io.IOException;
 
+    GridView mGridView;
+    @override
+    public void onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
 
-public class PhotoGalleryActivity extends Fragment {
-    private static final String TAG = "PhotGalleryFragment";
+        setRetainInstance(true);
+        new FetchItemsTask().execture();
 
-    private class FetchItemsTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                String result = new FlickrFetchr().getUrl("http://www.google.com");
-                Log.i(TAG, "Fetched contents of URL: " + result);
-            } catch (IOException ioe) {
-                Log.e(TAG, "Failed to fetch URL: ", ioe);
 
-            }
-            return null;
-        }
-    }
-
-}
 
     private class FetchItemsTask extends AsyncTask<Void,Void,Void> {
         @Override
@@ -56,6 +46,7 @@ public class PhotoGalleryActivity extends Fragment {
         View v = inflater.inflate(R.layout.fragment_photo_gallery, container, false);
 
         mGridView = (GridView) v.findViewById(R.id.gridView);
+
 
         return v;
     }
