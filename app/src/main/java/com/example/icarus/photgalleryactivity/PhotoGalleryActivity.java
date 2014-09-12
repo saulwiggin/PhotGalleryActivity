@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import java.io.IOException;
+
 
 public class PhotoGalleryActivity extends Fragment {
     private static final String TAG = "PhotGalleryFragment";
@@ -29,6 +31,17 @@ public class PhotoGalleryActivity extends Fragment {
 
 }
 
+    private class FetchItemsTask extends AsyncTask<Void,Void,Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+        try {
+            String result = new FlickrFetchr().getUrl("http://www.google.com");
+            Log.i(TAG, "Fetched contents of URL: " + result);
+        } catch (IOException ioe) {
+            Log.e(TAG, "Failed to fetch URL: ", ioe);
+
+        }
+            return null;
 
 
     @Override
