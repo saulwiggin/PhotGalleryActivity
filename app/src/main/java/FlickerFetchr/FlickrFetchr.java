@@ -1,5 +1,8 @@
 package FlickerFetchr;
 
+import android.net.Uri;
+import android.util.Log;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,5 +48,24 @@ public class FlickrFetchr {
     }
     public String getURL(String urlSpec) throws IOException {
         return new String(getUrlBytes(urlSpec));
+    }
+
+    String getURL(String urlSpec) throws IOException {
+        return new String(getUrlBytes(urlSpec));
+
+    }
+
+    public void fetchItems(){
+        try {
+            String url = Uri.parse(ENDPOINT).buildUpon()
+                    .appendQueryParameter("method", METHOD_GET_RECENT)
+                    .appendQueryParameter("api_key", API_KEY)
+                    .appendQueryParameter(PARAM_EXTRAS, EXTRA_SMALL_URL)
+                    .build().toString();
+            String xmlString = getURL(url);
+            Log.i(TAG, "Received xml: " + xmlString);
+        } catch (IOEXception ioe) {
+            Log.e(TAG, "Failed to fetch items", ioe);
+        }
     }
 }
