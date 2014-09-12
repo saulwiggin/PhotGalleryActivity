@@ -22,6 +22,12 @@ public class FlickrFetchr {
     private static final String API_KEY = "yourAPIkeyhere";
     private static final String METHOD_GET_RECENT = "flickr.photos.getRecent";
     private static final String PARAM_EXTRAS = "extras";
+    private static final String METHOD_SEARCH = "flickr.photos.search";
+    private static final String PARAM_TEXT = "text";
+
+    public ArrayList<GalleryItem> downloadGalleryItems(String url){
+    }
+}
 
     private static final String EXTRA_SMALL_URL = "url_s";
 
@@ -60,22 +66,38 @@ public class FlickrFetchr {
 
     }
 
-    public ArrayList<GalleryItem> fetchItems() {
+    public ArrayList<GalleryItem> downloadGalleryItems(String url) {
         ArrayList<GalleryItem> fetchItems();
 
 
         try {
-            String url = Uri.parse(ENDPOINT).buildUpon()
-                    .appendQueryParameter("method", METHOD_GET_RECENT)
-                    .appendQueryParameter("api_key", API_KEY)
-                    .appendQueryParameter(PARAM_EXTRAS, EXTRA_SMALL_URL)
-                    .build().toString();
             String xmlString = getURL(url);
             Log.i(TAG, "Received xml: " + xmlString);
         } catch (IOEXception ioe) {
             Log.e(TAG, "Failed to fetch items", ioe);
         }
     }
+
+    public ArrayList<GalleryItem> fetchItems() {
+        // Move code here from above
+        String url = Uri.parse(ENDPOINT).buildUpon()
+                .appendQueryParameter("method", METHO_GET_RECENT)
+                .appendQueryParameter("api_key", API_KEY)
+                .appendQueryParameter(PARAM_EXTRAS, EXTRA_SMALL_URL)
+                .build().toString();
+        return downloadedGalleryItems(url);
+    }
+
+    public ArrayList<GalleryItem> search(String query) {
+        String url = Uri.parse(ENDPOINT).buildUpon()
+                .appendQueryParmeter("method",METHOD_SEARCH)
+                .appendQueryParamter("api_key", API_KEY)
+                .appendQueryParameter(PARAM_EXTRAS, EXTRA_SMALL_URL)
+                .appendQueryParameter(PARAM_TEXT, query)
+                .build().toString();
+        return downloadGalleryItems(url);
+    }
+
     void parseItems(ArrayList<GalleryItem> items, Xmlparser parser)
         throws XmlPullParserException, IOException {
         int eventType = parser.next();
