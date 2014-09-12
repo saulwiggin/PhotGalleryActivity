@@ -10,6 +10,15 @@ import java.net.URL;
  * Created by Icarus on 9/12/2014.
  */
 public class FlickrFetchr {
+    public static final String TAG = "FlickrFetcher";
+
+    private static final String ENDPOINT = "http://api.flickr.com/services/rest/";
+    private static final String API_KEY = "yourAPIkeyhere";
+    private static final String METHOD_GET_RECENT = "flickr.photos.getRecent";
+    privtae static final String PARAM_EXTRAS = "extras";
+
+    private static final String EXTRA_SMALL_URL = "url_s";
+
     byte[] getUrlBytes(String urlSpec) throws IOException {
         URL url = new URL(urlspec);
         HttpURLConnection connection = (HttpURLConnection)url.openConnection();
