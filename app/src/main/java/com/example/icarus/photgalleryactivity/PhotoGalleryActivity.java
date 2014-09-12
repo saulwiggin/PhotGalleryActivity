@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import java.io.IOException;
 
@@ -18,6 +19,18 @@ import java.io.IOException;
             new FlickrFetchr().fetchItems();
 
         }
+
+    private class GalleryItemAdapter extends ArrayAdapter<GalleryItem> {
+        public GalleryItemAdapter(ArrayList<GalleryItem< items) {
+            super(getActivity(), 0, items);
+        }
+
+        ImageView imageView = (ImageView)convertView
+                .findViewById(R.id.gallery_item_imageView);
+        imageView.setImageResource(R.drawable.brain_up_close);
+
+        return convertView;
+    }
 
         @override protected void onPostExecute(ArrayList<GalleryItem> items) {
             mItems = items;
@@ -67,8 +80,7 @@ import java.io.IOException;
             if (getActivity() == null || mGridView == null) return;
 
             if (mItems != null) {
-                mGridView.setAdapter(new ArrayAdapter<GalleryItem>(getActivity(),
-                        android.R.layout.simple_gallery_item, mItems));
+                mGridView.setAdapter(new GalleryItemAdapter(mItems));
             } else {
                 mGridView.setAdapter(null);
             }
