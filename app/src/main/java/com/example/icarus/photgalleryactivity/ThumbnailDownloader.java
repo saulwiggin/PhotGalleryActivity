@@ -19,14 +19,26 @@ import FlickerFetchr.FlickrFetchr;
  * Created by Icarus on 9/12/2014.
  */
 public class ThumbnailDownloader<Token> extends HandlerThread {
-    private static final String TAG = "Thumbnaildown";private static final int MESSAGE_DOWNLOAD = 0;
+    private static final String TAG = "Thumbnaildown";
+    private static final int MESSAGE_DOWNLOAD = 0;
 
     Handler mHandler;
     Map<Token, String> requestMap =
             Collections.synchronized(new HashMap<Token, String>());
+    Handler mResponseHandler;
+    Listener<Token> mListener;
 
-    public ThumbnailDownloader(){
+    public interface Listener<Token> {
+        void onThumbnailDownloaded(Token token, Bitmap thumbnail);
+    }
+
+    public void setListener(Listener<Token> Listener) {
+        mListener = listener;
+    }
+
+    public ThumbnailDownloader(Handler responseHandler){
         super(TAG);
+        mResponseHandler = responseHandler;
     }
 
     @SuppressLint("HandlerLeak")
