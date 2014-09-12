@@ -1,36 +1,35 @@
 package com.example.icarus.photgalleryactivity;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridView;
 
 
-public class PhotoGalleryActivity extends Activity {
+public class PhotoGalleryActivity extends Fragment {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photo_gallery);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.photo_gallery, menu);
-        return true;
+        setContentView(R.layout.fragment_photo_gallery);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_photo_gallery, container, false);
+
+        mGridView = (GridView) v.findViewById(R.id.gridView);
+
+        return v;
     }
+}
+
+}
+
+    @Override
+    public Fragment createFragment() {
+        return new PhotGalleryFragment();
 }
