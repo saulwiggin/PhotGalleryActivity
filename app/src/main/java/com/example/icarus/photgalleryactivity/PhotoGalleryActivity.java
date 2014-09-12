@@ -28,6 +28,8 @@ import java.io.IOException;
         ImageView imageView = (ImageView)convertView
                 .findViewById(R.id.gallery_item_imageView);
         imageView.setImageResource(R.drawable.brain_up_close);
+        GalleryItem item = getItem(position);
+        mThumbnauilThread.queueThumbnail(imageView, item.getUrl());
 
         return convertView;
     }
