@@ -11,6 +11,14 @@ import android.widget.GridView;
 
 import java.io.IOException;
 
+    private class FetchItemsTask extneds AsyncTask<Void,Void,Void> {
+        @Override
+            protected Void doInBackground(Void... params){
+        new FlickrFetchr().fetchItems();
+        return null;
+        }
+        }
+
     GridView mGridView;
     @override
     public void onCreate(savedInstanceState);
