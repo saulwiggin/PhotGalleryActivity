@@ -6,7 +6,7 @@ package GalleryItem;
 public class GalleryItem {
     private String mCaption;
     private String mId;
-    PRIVATE sTRING MuRl;
+    private String MuRl;
 
     public String toString() {
         return mCaption;

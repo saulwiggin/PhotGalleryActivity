@@ -25,6 +25,7 @@ import java.io.IOException;
         }
 
     GridView mGridView;
+    ArrayList<GalleryItem> mItems;
     @override
     public void onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
@@ -37,10 +38,10 @@ import java.io.IOException;
     private class FetchItemsTask extends AsyncTask<Void,Void,Void> {
         @Override
         protected Void doInBackground(Void... params) {
-        new FlikrFetchr().fetchItems
+            new FlikrFetchr().fetchItems
             return null;
 
-
+        }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +56,26 @@ import java.io.IOException;
         mGridView = (GridView) v.findViewById(R.id.gridView);
 
 
+        setupAdapter();
+
+
         return v;
     }
-}
 
-}
+    void setupAdapter() {
+        if (getActivity() == null || mGridView == null) return;
+
+        if (mItems != null) {
+            mGridView.setAdapter(new ArrayAdapter<GalleryItem>(getActivity(),
+                    android.R.layout.simple_gallery_item, mItems));
+        } else {
+            mGridView.setAdapter(null);
+        }
+        }
+
+
+
+
 
     @Override
     public Fragment createFragment() {
