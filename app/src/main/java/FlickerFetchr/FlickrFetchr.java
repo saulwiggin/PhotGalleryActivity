@@ -3,6 +3,9 @@ package FlickerFetchr;
 import android.net.Uri;
 import android.util.Log;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,7 +60,10 @@ public class FlickrFetchr {
 
     }
 
-    public void fetchItems(){
+    public ArrayList<GalleryItem> fetchItems() {
+        ArrayList<GalleryItem> fetchItems();
+
+
         try {
             String url = Uri.parse(ENDPOINT).buildUpon()
                     .appendQueryParameter("method", METHOD_GET_RECENT)
