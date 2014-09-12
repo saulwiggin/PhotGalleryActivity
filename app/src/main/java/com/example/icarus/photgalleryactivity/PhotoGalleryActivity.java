@@ -1,6 +1,7 @@
 package com.example.icarus.photgalleryactivity;
 
 import android.app.Fragment;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +12,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import java.io.IOException;
+import java.util.logging.Handler;
 
-    private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>> {
+private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>> {
         @Override
         protected ArrayList<GalleryItem> doInBackground(Void... params) {}
 
@@ -63,7 +65,14 @@ import java.io.IOException;
             setRetainInstance(true);
             new FetchItemsTask().exectute();
 
-            mThumbnailThread = new ThumbnailDownlaoder<ImageView>();
+            mThumbnailThread = new ThumbnailDownlaoder<ImageView>(new Handler());
+            mThumbnailThread.setListener(new ThumbnailDownloader.Listener<ImageView>(){
+                public void onThumbnailDownloaded(Imageview imageView, Bitmap thumbnail){
+                    if (isVisibile()){
+                        imageView.setImageBitmap(thumbnail);
+                    }
+                }
+            });
             mThumbnailThread.start();
             mThumbnailThread.start();
             mThumbnailThread.getLooper();

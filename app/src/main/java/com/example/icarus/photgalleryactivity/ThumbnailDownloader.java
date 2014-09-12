@@ -62,7 +62,7 @@ public class ThumbnailDownloader<Token> extends HandlerThread {
         requestMap.put(token, url);
 
         mHandler
-                .obtainMessage(MESSAGE_DOWNLOAD, token){
+                .obtainMessage(MESSAGE_DOWNLOAD, token)
                 .sentToTarget();
         }
 
@@ -72,7 +72,7 @@ public class ThumbnailDownloader<Token> extends HandlerThread {
             if (url == null)
                 return;
 
-            byte[] butmapBytes = new FlickrFetchr().getUrkBytes(url);
+            byte[] bitmapBytes = new FlickrFetchr().getUrlBytes(url);
             final Bitmap bitmap = BitmapFactory
                     .decodeByteArray(bitmapBytes, 0, bitmapBytes.length);
             Log.i(TAG, "Bitmap created");
