@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import java.io.IOException;
 import java.util.logging.Handler;
 
+import FlickerFetchr.FlickrFetchr;
+
 private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>> {
         @Override
         protected ArrayList<GalleryItem> doInBackground(Void... params) {}
@@ -50,7 +52,16 @@ private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>>
         setRetainInstance(true);
         new FetchItemsTask().execture();
 
-    private class FetchItemsTask extends AsyncTask<Void,Void,Void> {
+    private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>> {
+        String query = "android"; // Just for testing
+
+        if ( query != null)
+
+        {
+            return new FlickrFetchr().search(query);
+        } else {
+            return new FlickrFetchr().fecthItems();
+        }
         @Override
         protected Void doInBackground(Void... params) {
             new FlikrFetchr().fetchItems
