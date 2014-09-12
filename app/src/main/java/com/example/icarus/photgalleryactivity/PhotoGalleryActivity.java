@@ -33,7 +33,7 @@ private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>>
                 .findViewById(R.id.gallery_item_imageView);
         imageView.setImageResource(R.drawable.brain_up_close);
         GalleryItem item = getItem(position);
-        mThumbnauilThread.queueThumbnail(imageView, item.getUrl());
+        mThumbnailThread.queueThumbnail(imageView, item.getUrl());
 
         return convertView;
     }
@@ -50,6 +50,7 @@ private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>>
         super.onCreate(savedInstanceState);
 
         setRetainInstance(true);
+        setHasOptionMenu(true);
         new FetchItemsTask().execture();
 
     private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>> {
