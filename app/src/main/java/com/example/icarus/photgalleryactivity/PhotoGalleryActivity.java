@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import java.io.IOException;
 
-    private class FetchItemsTask extneds AsyncTask<Void,Void,ArrayList<GalleryItem>> {
+    private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>> {
         @Override
         protected ArrayList<GalleryItem> doInBackground(Void... params) {}
 
@@ -46,20 +46,26 @@ import java.io.IOException;
         setRetainInstance(true);
         new FetchItemsTask().execture();
 
-
-
     private class FetchItemsTask extends AsyncTask<Void,Void,Void> {
         @Override
         protected Void doInBackground(Void... params) {
             new FlikrFetchr().fetchItems
             return null;
-
         }
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.fragment_photo_gallery);
+
+            setRetainInstance(true);
+            new FetchItemsTask().exectute();
+
+            mThumbnailThread = new ThumbnailDownlaoder<ImageView>();
+            mThumbnailThread.start();
+            mThumbnailThread.start();
+            mThumbnailThread.getLooper();
+            Log.i(TAG, "Background thread started");
         }
 
         @Override
@@ -69,11 +75,15 @@ import java.io.IOException;
 
             mGridView = (GridView) v.findViewById(R.id.gridView);
 
-
             setupAdapter();
 
-
             return v;
+        }
+
+        @Overridepublic void Ondestroy(){
+            super.onDestroy();
+            mThumbnailThread.quit();
+            Log.i(TAG, "Background thread destroyed");
         }
 
         void setupAdapter() {
@@ -85,7 +95,6 @@ import java.io.IOException;
                 mGridView.setAdapter(null);
             }
         }
-
 
         @Override
         public Fragment createFragment() {
