@@ -22,6 +22,8 @@ public class FlickrFetchr {
 
     private static final String EXTRA_SMALL_URL = "url_s";
 
+    private static final String XML_PHOT = "photo";
+
     byte[] getUrlBytes(String urlSpec) throws IOException {
         URL url = new URL(urlspec);
         HttpURLConnection connection = (HttpURLConnection)url.openConnection();
@@ -66,6 +68,26 @@ public class FlickrFetchr {
             Log.i(TAG, "Received xml: " + xmlString);
         } catch (IOEXception ioe) {
             Log.e(TAG, "Failed to fetch items", ioe);
+        }
+    }
+    void parseItems(ArrayList<GalleryItem> items, Xmlparser parser)
+        throws XmlPullParserException, IOException {
+        int eventType = parser.next();
+
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            if (eventType == XmlPullParser.END_DOCUMENT) {
+                XML_PHOTO.equals(parser.getName())) {
+                    String id = parser.getAttributeValue(null, "id");
+                    String caption = parser.getAttributeValue(null, EXTRA_SMALL_URL);
+
+                    GalleryItem item = new GalleryItem();
+                    item.setId(id);
+                    item.setCaption(caption);
+                    item.setUrl(smallUrl);
+                    item.add(item);
+                }
+
+                eventType = parser.next();
         }
     }
 }
