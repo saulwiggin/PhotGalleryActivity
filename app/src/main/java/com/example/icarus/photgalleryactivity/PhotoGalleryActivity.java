@@ -13,17 +13,43 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Handler;
 
 import FlickerFetchr.FlickrFetchr;
 import GalleryItem.GalleryItem;
 
 private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>> {
+
+        private String mUrl;
+        private WebView mWebView;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(saveInstanceState);
+        setRetainInstance(true);
+
+        mUrl = getActivity().getIntent().getData.toString();
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_photo_page, parent, false);
+
+        mWebView = (WebView)v.findViewById(R.id.webView);
+
+        return v;
+    }
+
         @Override
         protected ArrayList<GalleryItem> doInBackground(Void... params) {}
 
