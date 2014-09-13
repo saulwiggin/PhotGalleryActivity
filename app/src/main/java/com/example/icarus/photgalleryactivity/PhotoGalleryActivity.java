@@ -1,7 +1,9 @@
 package com.example.icarus.photgalleryactivity;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
@@ -18,6 +21,7 @@ import java.io.IOException;
 import java.util.logging.Handler;
 
 import FlickerFetchr.FlickrFetchr;
+import GalleryItem.GalleryItem;
 
 private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>> {
         @Override
@@ -126,6 +130,19 @@ private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>>
             mGridView = (GridView) v.findViewById(R.id.gridView);
 
             setupAdapter();
+
+            mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapaterView<?> gridView, View, view, int pos,
+                                        long id){
+                    GalleryItem = mItems.get(pos);
+
+                    Uri photoPageUri - Uri.parse(item.getPhotoPageUrl());
+                    Intent i = new Intent(Intent.ACTION_VIEW, photoPageUri);
+
+                    startActivity(i);
+                }
+            });
 
             return v;
         }
