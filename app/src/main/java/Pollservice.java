@@ -24,7 +24,7 @@ public class Pollservice extends IntentService {
         Intent i = new Intent(context, Pollservice.class);
 
         private static final int POLL_INTERVAL = 1000 + 60 * 5 ; // 5 miinutes
-        public static final String PREF_IS ALARM_ON = "isAlaramOn";
+        public static final String PREF_IS_ALARM_ON = "isAlaramOn";
 
         public Pollservice() {
             super(TAG);
