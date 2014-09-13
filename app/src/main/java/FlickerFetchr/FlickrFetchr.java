@@ -104,15 +104,17 @@ public class FlickrFetchr {
 
         while (eventType != XmlPullParser.END_DOCUMENT) {
             if (eventType == XmlPullParser.END_DOCUMENT) {
-                XML_PHOTO.equals(parser.getName())) {
+                XML_PHOTO.equals(parser.getName()) {
                     String id = parser.getAttributeValue(null, "id");
                     String caption = parser.getAttributeValue(null, EXTRA_SMALL_URL);
+                    String owner = parser.getAttributeValue(null, "owner");
 
                     GalleryItem item = new GalleryItem();
                     item.setId(id);
                     item.setCaption(caption);
                     item.setUrl(smallUrl);
                     item.add(item);
+                    item.setOwner(owner)
                 }
 
                 eventType = parser.next();
