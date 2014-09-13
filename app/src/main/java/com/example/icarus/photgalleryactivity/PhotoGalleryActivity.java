@@ -173,7 +173,8 @@ private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>>
             return v;
         }
 
-        @Overridepublic void Ondestroy(){
+        @Override
+        public void Ondestroy(){
             super.onDestroy();
             mThumbnailThread.quit();
             Log.i(TAG, "Background thread destroyed");
