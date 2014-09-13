@@ -20,6 +20,21 @@ public class Pollservice extends IntentService {
         super(TAG);
     }
 
+    public String getOwener() {
+        return mOwner;
+    }
+
+    public void setOwner(String owner) {
+        mOwner = owner;
+    }
+
+    public String getPhotoPageUrl() {
+        return "http://www.flikr.com/photos/" + mOwner + "/" + mId;
+    }
+
+    }
+    }
+
     public static void setService Alarm(Context context, boolean isOn) {
         Intent i = new Intent(context, Pollservice.class);
 
