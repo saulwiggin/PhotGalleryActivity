@@ -13,6 +13,9 @@ public class Pollservice extends IntentService {
 
     private static final String PREF_IS_ALARM_ON = "isAlarmOn";
 
+    public static final String PERM_PRIVATE =
+            "com.bignerdranch.android.photgallery.PRIVATE";
+
     public PollService() {
         super(TAG);
     }
