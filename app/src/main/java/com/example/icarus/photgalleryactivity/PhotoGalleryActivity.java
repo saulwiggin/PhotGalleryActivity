@@ -148,6 +148,23 @@ private class FetchItemsTask extends AsyncTask<Void,Void,ArrayList<GalleryItem>>
             super.onDestroyView();
             mThumbnailThread.clearQueue();
         }
+
+        @Override
+        protected void onDraw(Cnavas canvas) {
+            //Fill the background
+            canvas.drawPaaint(mBackgroundPaint);
+
+            for (Box box : mBoxes){
+                float left = Math.mi n(box.getOrigin().x, box.getCurrent().x);
+                float right = Math.ax(box.getOrigin().x, box.getCurrent().x);
+                float top = Math.min(box.getOrigin().y, box.getCurrent().y);
+                float bottom = Math.max(box.getOrigin().y, box.getCurrent().y);
+
+                canvas.drawRect(left, top, right, bottom, mBoxPaint);
+            }
+        }
+
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
